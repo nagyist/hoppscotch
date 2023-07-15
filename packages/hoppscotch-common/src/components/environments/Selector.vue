@@ -174,22 +174,27 @@
             @keyup.escape="hide()"
           >
             <label
-              class="sticky top-0 font-semibold truncate text-secondaryDark bg-primary border border-divider rounded px-4 py-2"
+              class="sticky top-0 font-semibold truncate flex items-center justify-between text-secondaryDark bg-primary border border-divider rounded pl-4"
             >
               {{ t("environment.global_variables") }}
+              <HoppButtonSecondary
+                v-tippy="{ theme: 'tooltip' }"
+                :title="t('action.edit')"
+                :icon="IconEdit"
+              />
             </label>
             <div
               v-if="sampleGlobalVariables.length === 0"
-              class="text-secondaryLight my-2 flex flex-col flex-1 space-y-2 pl-4"
+              class="text-secondaryLight my-2 flex flex-col flex-1 pl-4"
             >
               {{ t("environment.empty_variables") }}
             </div>
             <div v-else class="my-2 flex flex-col flex-1 space-y-2 pl-4">
               <div class="flex flex-1 space-x-4">
-                <span class="w-20 truncate text-tiny">
+                <span class="w-20 truncate text-tiny font-semibold">
                   {{ t("environment.name") }}
                 </span>
-                <span class="w-36 truncate text-tiny">
+                <span class="w-36 truncate text-tiny font-semibold">
                   {{ t("environment.value") }}
                 </span>
               </div>
@@ -207,22 +212,27 @@
               </div>
             </div>
             <label
-              class="sticky top-0 font-semibold truncate text-secondaryDark bg-primary border border-divider rounded px-4 py-2"
+              class="sticky top-0 font-semibold truncate flex items-center justify-between text-secondaryDark bg-primary border border-divider rounded pl-4"
             >
               {{ t("environment.list") }}
+              <HoppButtonSecondary
+                v-tippy="{ theme: 'tooltip' }"
+                :title="t('action.edit')"
+                :icon="IconEdit"
+              />
             </label>
             <div
               v-if="selectedEnv.type === 'NO_ENV_SELECTED'"
-              class="text-secondaryLight my-2 flex flex-col flex-1 space-y-2 pl-4"
+              class="text-secondaryLight my-2 flex flex-col flex-1 pl-4"
             >
               {{ t("environment.select") }}
             </div>
             <div v-else class="my-2 flex flex-col flex-1 space-y-2 pl-4">
               <div class="flex flex-1 space-x-4">
-                <span class="w-20 truncate text-tiny">
+                <span class="w-20 truncate text-tiny font-semibold">
                   {{ t("environment.name") }}
                 </span>
-                <span class="w-36 truncate text-tiny">
+                <span class="w-36 truncate text-tiny font-semibold">
                   {{ t("environment.value") }}
                 </span>
               </div>
@@ -257,6 +267,7 @@ import { computed, ref, watch } from "vue"
 import IconCheck from "~icons/lucide/check"
 import IconLayers from "~icons/lucide/layers"
 import IconEye from "~icons/lucide/eye"
+import IconEdit from "~icons/lucide/edit"
 import { TippyComponent } from "vue-tippy"
 import { useI18n } from "~/composables/i18n"
 import { GQLError } from "~/helpers/backend/GQLClient"
@@ -368,6 +379,14 @@ const sampleGlobalVariables = [
     key: "Staging",
     value: "https://staging.example.com",
   },
+  {
+    key: "Production",
+    value: "https://example.com",
+  },
+  {
+    key: "Development",
+    value: "http://localhost:3000",
+  },
 ]
 
 const sampleEnvironmentVariables = [
@@ -381,6 +400,26 @@ const sampleEnvironmentVariables = [
   },
   {
     key: "Development",
+    value: "http://localhost:3000",
+  },
+  {
+    key: "Testing",
+    value: "http://localhost:3000",
+  },
+  {
+    key: "Staging",
+    value: "https://staging.example.com",
+  },
+  {
+    key: "Production",
+    value: "https://example.com",
+  },
+  {
+    key: "Development",
+    value: "http://localhost:3000",
+  },
+  {
+    key: "Testing",
     value: "http://localhost:3000",
   },
 ]
