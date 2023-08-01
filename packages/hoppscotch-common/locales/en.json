@@ -298,6 +298,7 @@
     "sidebar": "Collapse sidebar"
   },
   "inspections":{
+    "title": "Inspector",
     "environment":{
       "add_environment": "Add to environment"
     },
